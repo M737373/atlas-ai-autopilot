@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: atlas-ai-autopilot
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: ATLAS_DASHBOARD_PASSWORD
+        sync: false
+      - key: ATLAS_DB_PATH
+        value: /data/atlas.db
+    disk:
+      name: atlas-data
+      mountPath: /data
+      sizeGB: 1

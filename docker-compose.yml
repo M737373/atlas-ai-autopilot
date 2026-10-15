@@ -1,0 +1,14 @@
+services:
+  atlas:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4.1-mini}
+      ATLAS_DB_PATH: /data/atlas.db
+    volumes:
+      - atlas_data:/data
+    restart: unless-stopped
+volumes:
+  atlas_data:
